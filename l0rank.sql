@@ -73,17 +73,17 @@ user_summary_with_rank as (
     from user_summary
 )
 
-select row_number() over (order by rank_score desc, amount_usd desc, transaction_count desc) as rk,
-    user_address as ua,
-    rank_score as rs,
-    transaction_count as tc,
-    round(amount_usd, 2) as amt,
-    cast(active_source_chain_count as varchar) || ' / ' || cast(active_destination_chain_count as varchar) || ' / ' || cast(active_transaction_contract_count as varchar) as cc,
-    cast(active_days_count as varchar) || ' / ' || cast(active_weeks_count as varchar) || ' / ' || cast(active_months_count as varchar) as dwm,
-    lz_age_days as lzd,
-    initial_block_time as ibt
+select row_number() over (order by rank_score desc, amount_usd desc, transaction_count desc) as Rank,
+    user_address as Address,
+    transaction_count as TXs,
+    round(amount_usd, 2) as Amount,
+    cast(active_source_chain_count as varchar) || ' / ' || cast(active_destination_chain_count as varchar) || ' / ' || cast(active_transaction_contract_count as varchar) as Active_source_chain_count,
+    cast(active_days_count as varchar) || ' / ' || cast(active_weeks_count as varchar) || ' / ' || cast(active_months_count as varchar) as Active_days_count,
+    lz_age_days as Wallet_age,
+    initial_block_time as InitialTx,
+    last_block_time  as LastTx
 from user_summary_with_rank
 where user_address in (
-    LOWER('0x111')
+0x57...,
 )
 order by rank_score desc, amount_usd desc, transaction_count desc
